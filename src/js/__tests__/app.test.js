@@ -1,33 +1,56 @@
-import checkProductCount from '../app';
+import findBy from '../app';
 
-test('Integer', () => {
-  expect(checkProductCount(7)).toBe(7);
+const results = [
+  { name: 'маг', type: 'character', description: 'Персонаж, обладающий магическими способностями' },
+  { name: 'заклинание', type: 'attack', description: 'Атака магическим заклинанием' },
+  { name: 'урон', type: 'help', description: 'Страница описания элемента интерфейса' },
+];
+
+test('Search on name', () => {
+  const finder = findBy('name', 'урон');
+  const example = [
+    {
+      name: 'урон',
+      type: 'help',
+      description: 'Страница описания элемента интерфейса',
+    },
+  ];
+
+  expect(results.filter(finder)).toEqual(example);
 });
 
-test('Not Integer', () => {
-  expect(checkProductCount('7.57')).toEqual(Error('Ввод некорректен'));
+test('Search on type', () => {
+  const finder = findBy('type', 'attack');
+  const example = [
+    {
+      name: 'заклинание',
+      type: 'attack',
+      description: 'Атака магическим заклинанием',
+    },
+  ];
+
+  expect(results.filter(finder)).toEqual(example);
 });
 
-test('String', () => {
-  expect(checkProductCount('seven')).toEqual(Error('Ввод некорректен'));
+test('Search on exist param', () => {
+  const finder = findBy('name', 'Петр');
+  const example = [];
+
+  expect(results.filter(finder)).toEqual(example);
 });
 
-test('Hexadecimal', () => {
-  expect(checkProductCount('0x23')).toEqual(Error('Ввод некорректен'));
-});
+test('Search on two parameters', () => {
+  const finder = findBy('name', 'маг');
+  const results2 = [
+    { name: 'маг', type: 'character', description: 'Персонаж, обладающий магическими способностями' },
+    { name: 'заклинание', type: 'attack', description: 'Атака магическим заклинанием' },
+    { name: 'урон', type: 'help', description: 'Страница описания элемента интерфейса' },
+    { name: 'маг', type: 'character', description: 'Иной персонаж, обладающий магическими способностями' },
+  ];
+  const example = [
+    { name: 'маг', type: 'character', description: 'Персонаж, обладающий магическими способностями' },
+    { name: 'маг', type: 'character', description: 'Иной персонаж, обладающий магическими способностями' },
+  ];
 
-test('Negative', () => {
-  expect(checkProductCount('-3')).toEqual(Error('Ввод некорректен'));
-});
-
-test('Symbols and integer', () => {
-  expect(checkProductCount('df5')).toEqual(Error('Ввод некорректен'));
-});
-
-test('Octagonal', () => {
-  expect(checkProductCount('0232')).toEqual(Error('Ввод некорректен'));
-});
-
-test('Empty', () => {
-  expect(checkProductCount('')).toEqual(Error('Ввод некорректен'));
+  expect(results2.filter(finder)).toEqual(example);
 });
