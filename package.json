@@ -1,5 +1,5 @@
 {
-  "name": "ajs51",
+  "name": "ajs52",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -41,16 +41,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IsmagilovRF/ajs51.git"
+    "url": "git+https://github.com/IsmagilovRF/ajs52.git"
   },
   "bugs": {
-    "url": "https://github.com/IsmagilovRF/ajs51/issues"
+    "url": "https://github.com/IsmagilovRF/ajs52/issues"
   },
-  "homepage": "https://github.com/IsmagilovRF/ajs51#readme",
+  "homepage": "https://github.com/IsmagilovRF/ajs52#readme",
   "husky": {
     "hooks": {
       "pre-commit": "npm test"
     }
   },
-  "description": "ajs51 ДЗ51"
+  "description": "ajs52 ДЗ52"
 }
